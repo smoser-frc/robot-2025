@@ -26,6 +26,8 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
+import frc.robot.commands.ManualArm;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LEDsubsystem.*;
 import frc.robot.subsystems.drive.*;
 import frc.robot.subsystems.vision.*;
@@ -45,10 +47,12 @@ public class RobotContainer {
   private final Drive drive;
   private final Vision vision;
   private final LEDlive ledLive;
+  private final Arm arm;
   private SwerveDriveSimulation driveSimulation = null;
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
+  private final XboxController coDriver = new XboxController(1);
 
   // Dashboard inputs
   private final LoggedDashboardChooser<Command> autoChooser;
@@ -56,6 +60,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     ledLive = new LEDlive();
+    arm = new Arm();
     switch (Constants.currentMode) {
       case REAL:
         // Real robot, instantiate hardware IO implementations
@@ -163,6 +168,8 @@ public class RobotContainer {
 
     // Switch to X pattern when X button is pressed
     controller.x().onTrue(Commands.runOnce(drive::stopWithX, drive));
+
+    arm.setDefaultCommand(new ManualArm(arm, () -> coDriver.getLeftY()));
 
     // Reset gyro / odometry
     final Runnable resetGyro =
