@@ -127,6 +127,12 @@ public class RobotContainer {
         break;
     }
 
+    TestAuto testCommand = new TestAuto("Byting Command");
+    TestAuto testEventMarker = new TestAuto("Byting Event Marker");
+    // NamedCommands.registerCommand("Test", Commands.print("I EXIST"));
+    NamedCommands.registerCommand("BytingCommand", testCommand);
+    // new EventTrigger("BytingEventMarker").onTrue(testEventMarker);
+
     // Set up auto routines
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 
