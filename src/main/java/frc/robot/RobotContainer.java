@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -57,6 +58,7 @@ public class RobotContainer {
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
+  private final CommandGenericHID buttonBox = new CommandGenericHID(1);
 
   private final XboxController driver = new XboxController(0);
   private final XboxController coDriver = new XboxController(1);
@@ -203,6 +205,20 @@ public class RobotContainer {
                 drive.resetOdometry(
                     new Pose2d(drive.getPose().getTranslation(), new Rotation2d())); // zero gyro
     controller.start().onTrue(Commands.runOnce(resetGyro, drive).ignoringDisable(true));
+
+    buttonBox.button(0).onTrue(Commands.print("Button 1"));
+    buttonBox.button(1).onTrue(Commands.print("Button 1"));
+    buttonBox.button(2).onTrue(Commands.print("Button 2"));
+    buttonBox.button(3).onTrue(Commands.print("Button 3"));
+    buttonBox.button(4).onTrue(Commands.print("Button 4"));
+    buttonBox.button(5).onTrue(Commands.print("Button 5"));
+    buttonBox.button(6).onTrue(Commands.print("Button 6"));
+    buttonBox.button(7).onTrue(Commands.print("Button 7"));
+    buttonBox.button(8).onTrue(Commands.print("Button 8"));
+    buttonBox.button(9).onTrue(Commands.print("Button 9"));
+    buttonBox.button(10).onTrue(Commands.print("Button 10"));
+    buttonBox.button(11).onTrue(Commands.print("Button 11"));
+    buttonBox.button(12).onTrue(Commands.print("Button 12"));
   }
 
   /**
