@@ -152,12 +152,6 @@ public class RobotContainer {
     autoChooser.addOption(
         "Drive SysId (Dynamic Reverse)", drive.sysIdDynamic(SysIdRoutine.Direction.kReverse));
 
-    TestAuto testCommand = new TestAuto("Byting Command");
-    TestAuto testEventMarker = new TestAuto("Byting Event Marker");
-    // NamedCommands.registerCommand("Test", Commands.print("I EXIST"));
-    NamedCommands.registerCommand("BytingCommand", testCommand);
-    // new EventTrigger("BytingEventMarker").onTrue(testEventMarker);
-
     // Configure the button bindings
     configureButtonBindings();
   }
