@@ -245,6 +245,8 @@ public class RobotContainer {
                 () -> Constants.strafeSpeedMultiplier * driverController.getRightTriggerAxis(),
                 () -> 0));
 
+    driverController.leftBumper().onTrue(drivebase.driveToDistanceCommand(.1, 1));
+
     testController.a().whileTrue(armToScorePos());
     testController.x().whileTrue(new ArmGoToPos(arm, elevator, Constants.Arm.zeroPos));
     testController.y().whileTrue(new ElevatorGoToPos(elevator, arm, ElevatorState.L4));
